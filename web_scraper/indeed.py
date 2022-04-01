@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 LIMIT = 50
-URL = f"https://kr.indeed.com/%EC%B7%A8%EC%97%85?as_and=python&as_phr&as_any&as_not&as_ttl&as_cmp&jt=all&st&salary&radius=25&l&fromage=any&limit={LIMIT}"
+URL = f"https://kr.indeed.com/jobs?q=python&limit={LIMIT}"
 
 
 def get_last_pages() -> int:
