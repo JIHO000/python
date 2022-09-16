@@ -3,7 +3,7 @@ from googleapiclient.errors import HttpError
 from oauth2client.tools import argparser
 from yt_to_mp3 import get_mp3
 
-DEVELOPER_KEY = "AIzaSyDuyG82_-TrNKoONkr7lTXYvgWcy_ZnMyc"
+DEVELOPER_KEY = "API_KEY"
 YOUTUBE_API_SERVICE_NAME="youtube"
 YOUTUBE_API_VERSION="v3"
 youtube = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
@@ -29,10 +29,10 @@ def extract_url(song):
     max_view_idx = view.index(max_view)
 
     URL = f"https://www.youtube.com/watch?v={id[max_view_idx]}"
-    return [URL, id]
+    return [URL, id[max_view_idx]]
 
 def get_MV(id, rank):
-    html_text = """
+    html_text = f"""
         <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -47,7 +47,7 @@ def get_MV(id, rank):
                 type="text/html"
                 width="720"
                 height="405"
-                src=f"https://www.youtube.com/embed/{id}"
+                src="https://www.youtube.com/embed/{id}"
                 frameborder="0"
                 allowfullscreen="allowfullscreen"></iframe>
         </body>
@@ -57,10 +57,10 @@ def get_MV(id, rank):
     html_file = open(html, 'w')
     html_file.write(html_text)
     html_file.close()
-    print("succes html")
+    print("success html")
 
 def get_data(songs):
-    for i in range(2):
+    for i in range(100):
         URL = extract_url(songs[i]["곡"])
-        get_mp3(URL[0])
+        get_mp3(URL[0], i+1)
         get_MV(URL[1], i+1)
