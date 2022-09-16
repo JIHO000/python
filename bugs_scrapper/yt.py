@@ -3,7 +3,7 @@ from googleapiclient.errors import HttpError
 from oauth2client.tools import argparser
 from yt_to_mp3 import get_mp3
 
-DEVELOPER_KEY = "AIzaSyA4GJ_shSR3XGiAA4BAdYD8QLyZO7sd_ww"
+DEVELOPER_KEY = "AIzaSyDuyG82_-TrNKoONkr7lTXYvgWcy_ZnMyc"
 YOUTUBE_API_SERVICE_NAME="youtube"
 YOUTUBE_API_VERSION="v3"
 youtube = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
@@ -60,7 +60,7 @@ def get_MV(id, rank):
     print("succes html")
 
 def get_data(songs):
-    for i in range(1, 5):
+    for i in range(2):
         URL = extract_url(songs[i]["곡"])
         get_mp3(URL[0])
-        get_MV(URL[1], i)
+        get_MV(URL[1], i+1)
