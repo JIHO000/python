@@ -3,7 +3,7 @@ from googleapiclient.errors import HttpError
 from oauth2client.tools import argparser
 from yt_to_mp3 import get_mp3
 
-DEVELOPER_KEY = "AIzaSyDuyG82_-TrNKoONkr7lTXYvgWcy_ZnMyc"
+DEVELOPER_KEY = "API_KEY"
 YOUTUBE_API_SERVICE_NAME="youtube"
 YOUTUBE_API_VERSION="v3"
 youtube = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELOPER_KEY)
