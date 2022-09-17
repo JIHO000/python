@@ -57,10 +57,10 @@ def get_MV(id, rank):
     html_file = open(html, 'w')
     html_file.write(html_text)
     html_file.close()
-    print("success html")
+    print(rank, "success html")
 
 def get_data(songs):
     for i in range(100):
-        URL = extract_url(songs[i]["곡"])
+        URL = extract_url(songs[i]["곡"] + " " + songs[i]["아티스트"])
         get_mp3(URL[0], i+1)
         get_MV(URL[1], i+1)

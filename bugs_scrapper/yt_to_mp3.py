@@ -12,9 +12,9 @@ def get_mp3(URL, rank):
 	files = glob.glob("songs/*.mp4")
 	for x in files:
 		if not os.path.isdir(x):
-			filename = os.path.splitext(x)
+			#filename = os.path.splitext(x)
 			try:
-				os.rename(x,filename[0] + '.mp3')
+				os.rename(x,"songs/" + str(rank) + '.mp3')
 			except:
 				pass
-	print("success mp3")
+	print(rank, "success mp3")
