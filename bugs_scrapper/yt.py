@@ -11,25 +11,27 @@ youtube = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELO
 def extract_url(song):
     search_response = youtube.search().list(
         q = song,
+        order = "viewCount",
+        # order = "relevance",
         part = "snippet",
-        maxResults = 3
-        ).execute()
+        maxResults = 1
+                                  ).execute()
 
     id = []
-    view = []
+    # view = []
 
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] == "youtube#video":
             id.append("%s" % (search_result["id"]["videoId"]))
-            request = youtube.videos().list(part='statistics', id=search_result["id"]["videoId"])
-            response = request.execute()
-            view.append(response['items'][0]['statistics']['viewCount'])
+            # request = youtube.videos().list(part='statistics', id=search_result["id"]["videoId"])
+            # response = request.execute()
+            # view.append(response['items'][0]['statistics']['viewCount'])
                     
-    max_view = max(view)
-    max_view_idx = view.index(max_view)
+    # max_view = max(view)
+    # max_view_idx = view.index(max_view)
 
-    URL = f"https://www.youtube.com/watch?v={id[max_view_idx]}"
-    return [URL, id[max_view_idx]]
+    URL = f"https://www.youtube.com/watch?v={id[0]}"
+    return [URL, id[0]]
 
 def get_MV(id, rank):
     html_text = f"""
@@ -60,7 +62,7 @@ def get_MV(id, rank):
     print(rank, "success html")
 
 def get_data(songs):
-    for i in range(100):
+    for i in range(3):
         URL = extract_url(songs[i]["곡"] + " " + songs[i]["아티스트"])
         get_mp3(URL[0], i+1)
         get_MV(URL[1], i+1)
