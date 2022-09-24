@@ -11,8 +11,8 @@ youtube = build(YOUTUBE_API_SERVICE_NAME,YOUTUBE_API_VERSION,developerKey=DEVELO
 def extract_url(song):
     search_response = youtube.search().list(
         q = song,
-        order = "viewCount",
-        # order = "relevance",
+        # order = "viewCount",
+        order = "relevance",
         part = "snippet",
         maxResults = 1
                                   ).execute()
